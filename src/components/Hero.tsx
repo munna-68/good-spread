@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import heroBg1672 from '../assets/hero-buffet-spread-1672.webp';
 import heroBg900 from '../assets/hero-buffet-spread-900.webp';
+import heroMobile940 from '../assets/hero-sunlit-table-940.webp';
+import heroMobile700 from '../assets/hero-sunlit-table-700.webp';
 import { IMG } from '../data';
 import { TIMES, fmtTime, fmtTimeShort, mealFor, zipInfo } from '../lib';
 import { useOrder } from '../store';
@@ -40,17 +42,20 @@ export function Hero() {
     <section className="hero">
       <div className="wrap">
         <div className="hero-top">
-          <div className="hero-bg" aria-hidden="true">
-            <img
-              src={heroBg1672}
-              srcSet={`${heroBg900} 900w, ${heroBg1672} 1672w`}
-              sizes="100vw"
-              alt=""
-              decoding="async"
-              onError={(e) => (e.target as HTMLImageElement).remove()}
-            />
-          </div>
           <div className="hero-grid">
+          <div className="hero-bg" aria-hidden="true">
+            <picture>
+              <source media="(max-width: 999px)" srcSet={`${heroMobile700} 700w, ${heroMobile940} 940w`} sizes="100vw" />
+              <img
+                src={heroBg1672}
+                srcSet={`${heroBg900} 900w, ${heroBg1672} 1672w`}
+                sizes="100vw"
+                alt=""
+                decoding="async"
+                onError={(e) => (e.target as HTMLImageElement).remove()}
+              />
+            </picture>
+          </div>
           <div className="hero-copy">
             <h1 className="hero-rot" id="heroRot">
               <span className={`slide${slide === 0 ? ' is-on' : ''}`} aria-hidden={slide !== 0}>
