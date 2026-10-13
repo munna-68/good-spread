@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import heroBg1672 from '../assets/hero-buffet-spread-1672.webp';
+import heroBg900 from '../assets/hero-buffet-spread-900.webp';
 import { IMG } from '../data';
 import { TIMES, fmtTime, fmtTimeShort, mealFor, zipInfo } from '../lib';
 import { useOrder } from '../store';
@@ -36,11 +38,19 @@ export function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero-bg" aria-hidden="true">
-        <img src="https://images.pexels.com/photos/12253094/pexels-photo-12253094.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="" onError={(e) => (e.target as HTMLImageElement).remove()} />
-      </div>
       <div className="wrap">
-        <div className="hero-grid">
+        <div className="hero-top">
+          <div className="hero-bg" aria-hidden="true">
+            <img
+              src={heroBg1672}
+              srcSet={`${heroBg900} 900w, ${heroBg1672} 1672w`}
+              sizes="100vw"
+              alt=""
+              decoding="async"
+              onError={(e) => (e.target as HTMLImageElement).remove()}
+            />
+          </div>
+          <div className="hero-grid">
           <div className="hero-copy">
             <h1 className="hero-rot" id="heroRot">
               <span className={`slide${slide === 0 ? ' is-on' : ''}`} aria-hidden={slide !== 0}>
@@ -123,6 +133,7 @@ export function Hero() {
             <button className="btn btn-primary" type="submit">See the menu for <span className="num">{o.guests}</span> guests</button>
             <div className="planner-foot"><span>Wedding or 100+ guests?</span><a className="link" href="#events">Get a custom quote</a></div>
           </form>
+          </div>
         </div>
 
         <div className="mosaic">
