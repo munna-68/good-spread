@@ -1,5 +1,5 @@
-import { animate, motion, useInView, useSpring, useTransform, type MotionProps } from 'framer-motion';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { motion, useSpring, useTransform, type MotionProps } from 'framer-motion';
+import { useEffect, type ReactNode } from 'react';
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -90,29 +90,4 @@ export function AnimatedNumber({
   }, [value, spring]);
   const text = useTransform(spring, (v) => (format ? format(v) : String(Math.round(v))));
   return <motion.span className={className}>{text}</motion.span>;
-}
-
-/* Counts from zero to `to` the first time it enters the viewport. */
-export function CountUp({
-  to,
-  format,
-  duration = 1.4,
-}: {
-  to: number;
-  format: (n: number) => string;
-  duration?: number;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
-  const [val, setVal] = useState(0);
-  const startedRef = useRef(false);
-
-  useEffect(() => {
-    if (!inView || startedRef.current) return;
-    startedRef.current = true;
-    const controls = animate(0, to, { duration, ease: EASE, onUpdate: setVal });
-    return () => controls.stop();
-  }, [inView, to, duration]);
-
-  return <span ref={ref}>{format(val)}</span>;
 }

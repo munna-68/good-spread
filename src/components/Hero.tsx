@@ -6,7 +6,7 @@ import heroMobile940 from '../assets/hero-sunlit-table-940.webp';
 import heroMobile700 from '../assets/hero-sunlit-table-700.webp';
 import { IMG, LOGOS } from '../data';
 import { TIMES, fmtTime, fmtTimeShort, mealFor, zipInfo } from '../lib';
-import { AnimatedNumber, CountUp, EASE, Item, Reveal, Stagger } from '../motion';
+import { AnimatedNumber, EASE, Item, Reveal, Stagger } from '../motion';
 import { useOrder } from '../store';
 
 function useCarousel(n: number, ms = 5000) {
@@ -105,17 +105,12 @@ export function Hero() {
             >
               Austin's office and event caterer. Pick your headcount, choose a spread, and we deliver, set up and label every dish.
             </motion.p>
-            <motion.div
-              className="trust"
-              initial="off"
-              animate="on"
-              variants={{ off: {}, on: { transition: { staggerChildren: 0.09, delayChildren: 0.5 } } }}
-            >
-              <Item><strong className="num"><CountUp to={4.9} format={(n) => n.toFixed(1)} /></strong><span><span className="stars" aria-hidden="true">★★★★★</span><br />1,240 Google reviews</span></Item>
-              <Item><strong className="num"><CountUp to={98.7} format={(n) => `${n.toFixed(1)}%`} /></strong><span>orders on time in the last 12 months</span></Item>
-              <Item><strong className="num"><CountUp to={3400} format={(n) => `${Math.round(n).toLocaleString('en-US')}+`} /></strong><span>office lunches</span></Item>
-              <Item><strong className="num">10–500</strong><span>guests per order</span></Item>
-            </motion.div>
+            <div className="trust">
+              <div><strong className="num">4.9</strong><span><span className="stars" aria-hidden="true">★★★★★</span><br />1,240 Google reviews</span></div>
+              <div><strong className="num">98.7%</strong><span>orders on time in the last 12 months</span></div>
+              <div><strong className="num">3,400+</strong><span>office lunches</span></div>
+              <div><strong className="num">10–500</strong><span>guests per order</span></div>
+            </div>
           </div>
 
           <motion.form
