@@ -47,6 +47,20 @@ export const CATS: { id: Cat; label: string }[] = [
 
 export const DIETS: Diet[] = ['VG', 'V', 'GF', 'DF'];
 
+export const LOGOS: { name: string; variant?: 'serif' | 'mono' }[] = [
+  { name: 'Ledgerline' },
+  { name: 'Mesa Health' },
+  { name: 'caliche/studio', variant: 'serif' },
+  { name: 'Riverbend Law' },
+  { name: 'Tessellate', variant: 'mono' },
+  { name: 'Foundry Coffee' },
+  { name: 'Zilker Labs', variant: 'mono' },
+  { name: 'Paloma Events', variant: 'serif' },
+  { name: 'Monument Realty' },
+  { name: 'Blue Larder' },
+  { name: 'Eastside Veterinary' },
+];
+
 export const OCCASIONS = [
   { img: '5852271', alt: 'Sandwiches and salads packed for an office lunch', h: 'Office lunches', p: 'Drop-off spreads and individually labeled boxes, set up in your break room.', from: 16, cta: 'Order now', href: '#menu' },
   { img: '34321369', alt: 'Evening corporate event with string lights', h: 'Corporate events', p: 'Launches, offsites and client dinners with servers, bar and rentals handled.', from: 42, cta: 'Get a quote', href: '#events' },

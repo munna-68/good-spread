@@ -1,4 +1,6 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useOrder } from '../store';
+import { EASE } from '../motion';
 
 const NAV: [string, string, string?][] = [
   ['#menu', 'Order catering', 'Spreads from $16 per guest'],
@@ -52,7 +54,17 @@ export function Header() {
               <path d="M4 7h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8L4 7Z" />
               <path d="M9 7a3 3 0 0 1 6 0" />
             </svg>
-            {!!cart.length && <span className="cart-count num">{cart.length}</span>}
+            {!!cart.length && (
+              <motion.span
+                key={cart.length}
+                className="cart-count num"
+                initial={{ scale: 0.4, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 600, damping: 22 }}
+              >
+                {cart.length}
+              </motion.span>
+            )}
           </button>
           <button
             className="burger" type="button" aria-label={navOpen ? 'Close menu' : 'Open menu'}
@@ -66,24 +78,41 @@ export function Header() {
 
 export function NavSheet() {
   const { navOpen, setNav, toast } = useOrder();
-  if (!navOpen) return null;
   return (
-    <div className="nav-sheet" id="navSheet">
-      <nav aria-label="Mobile">
-        {NAV.map(([href, label, sub]) => (
-          <a key={href} href={href} onClick={() => setNav(false)}>
-            <span>{label}</span>
-            {sub && <small>{sub}</small>}
-          </a>
-        ))}
-      </nav>
-      <div className="nav-sheet-foot">
-        <a className="btn btn-primary" href="#events" onClick={() => setNav(false)}>Get a quote</a>
-        <button className="btn btn-ghost" onClick={() => { setNav(false); toast('Demo: on Shopify this opens checkout with the event details attached to the order.'); }}>
-          Call (555) 123-4567
-        </button>
-        <p className="muted">Pickup 7am–7pm Mon–Sat · 1234 Sample Street</p>
-      </div>
-    </div>
+    <AnimatePresence>
+      {navOpen && (
+        <motion.div
+          className="nav-sheet" id="navSheet"
+          initial={{ opacity: 0, y: -14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -14 }}
+          transition={{ duration: 0.28, ease: EASE }}
+        >
+          <motion.nav
+            aria-label="Mobile"
+            initial="off"
+            animate="on"
+            variants={{ off: {}, on: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } }}
+          >
+            {NAV.map(([href, label, sub]) => (
+              <motion.a
+                key={href} href={href} onClick={() => setNav(false)}
+                variants={{ off: { opacity: 0, y: 14 }, on: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE } } }}
+              >
+                <span>{label}</span>
+                {sub && <small>{sub}</small>}
+              </motion.a>
+            ))}
+          </motion.nav>
+          <div className="nav-sheet-foot">
+            <a className="btn btn-primary" href="#events" onClick={() => setNav(false)}>Get a quote</a>
+            <button className="btn btn-ghost" onClick={() => { setNav(false); toast('Demo: on Shopify this opens checkout with the event details attached to the order.'); }}>
+              Call (555) 123-4567
+            </button>
+            <p className="muted">Pickup 7am–7pm Mon–Sat · 1234 Sample Street</p>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

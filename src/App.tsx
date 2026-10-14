@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { OrderProvider, useOrder } from './store';
 import { Announce, Header, NavSheet } from './components/Header';
 import { Hero, Logos, Steps } from './components/Hero';
@@ -52,7 +53,9 @@ function Shell() {
 export default function App() {
   return (
     <OrderProvider>
-      <Shell />
+      <MotionConfig reducedMotion="user">
+        <Shell />
+      </MotionConfig>
     </OrderProvider>
   );
 }
