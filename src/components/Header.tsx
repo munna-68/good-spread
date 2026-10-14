@@ -11,10 +11,10 @@ const NAV: [string, string, string?][] = [
 export function LeafMark() {
   return (
     <span className="logo-mark" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" style={{ color: 'var(--accent-ink)' }}>
-        <path d="M12 21V9" />
-        <path d="M12 9c0-3 2-6 6-6 0 3-2 6-6 6Z" />
-        <path d="M12 13c0-2.5-1.8-5-5-5 0 2.5 1.8 5 5 5Z" />
+      <svg viewBox="2 1 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="1" width="40" height="40" rx="11" fill="#114B2B" />
+        <path fillRule="evenodd" clipRule="evenodd" d="M19.3 9.5H24.7L33.2 32.5H28.0L26.2 27.2H17.8L16.0 32.5H10.8L19.3 9.5ZM19.2 23.0H24.8L22.0 14.6L19.2 23.0Z" fill="#FFFFFF" />
+        <path d="M22.0 23.2C22.0 18.6 25.8 15.2 30.8 15.2C30.8 19.8 27.0 23.2 22.0 23.2Z" fill="#86EFAC" />
       </svg>
     </span>
   );

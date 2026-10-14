@@ -78,7 +78,7 @@ export function Hero() {
             <div className="trust">
               <div><strong className="num">4.9</strong><span><span className="stars" aria-hidden="true">★★★★★</span><br />1,240 Google reviews</span></div>
               <div><strong className="num">98.7%</strong><span>orders on time in the last 12 months</span></div>
-              <div><strong className="num">3,400+</strong><span>office lunches delivered</span></div>
+              <div><strong className="num">3,400+</strong><span>office lunches</span></div>
               <div><strong className="num">10–500</strong><span>guests per order</span></div>
             </div>
           </div>
